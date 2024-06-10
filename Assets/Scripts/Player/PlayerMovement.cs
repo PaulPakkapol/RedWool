@@ -12,11 +12,14 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D groundCheck;
     public LayerMask groundMask;
     private bool landingGrounded;
+    private Vector2 vecGravity;
+    
     
     [Header("Player")] [Space] //Player customize movement
     public float groundSpeed;
     public float jumpSpeed;
     public float acceleration;
+    public float fallMultiplier;
     private bool jump = false;
     [Range(0f,1f)] public float groundDecay;
     public bool grounded;
@@ -33,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
     [System.Serializable]
     public class BoolEvent : UnityEvent<bool> { }
 
+    private void Start()
+    {
+        vecGravity = new Vector2(0, -Physics2D.gravity.y);
+    }
+
     private void Awake()
     {
         if (OnLandEvent == null)//Check 
@@ -40,17 +48,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update() {
+
         GetInput();
         HandleJump();
         RunAnimation();
+        StopJumpAnimation();
     }
     
     private void FixedUpdate() {
         CheckGrounded();
         HandleMovement();
         ApplyFriction();
-        StopJumpAnimation();
-        
+
     }
 
     void GetInput() //Get in put for playerMove
@@ -61,10 +70,10 @@ public class PlayerMovement : MonoBehaviour
     
     void HandleMovement() //Make player can move better
     {
-        if (Mathf.Abs(xInput) > 0)
+        if (Mathf.Abs(xInput)>0)
         {
             float increment = xInput * acceleration ;
-            float newSpeed = Mathf.Clamp(body.velocity.x + increment, -groundSpeed, groundSpeed);
+            float newSpeed = Mathf.Clamp(body.velocity.x +increment, -groundSpeed, groundSpeed);
             body.velocity = new Vector2(newSpeed, body.velocity.y);
 
             FlipInput();
@@ -72,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void RunAnimation()
         {
-            horizontalMove = Input.GetAxis("Horizontal") * groundSpeed;
+            horizontalMove = Input.GetAxis("Horizontal")* groundSpeed ;
             animator.SetFloat("PlayerSpeed",Mathf.Abs(horizontalMove));
         }
     
@@ -88,6 +97,10 @@ public class PlayerMovement : MonoBehaviour
             body.velocity = new Vector2(body.velocity.x, jumpSpeed);
             jump = true;
             animator.SetBool("IsJump", true);
+        }
+        if (body.velocity.y >0)
+        {
+            body.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
         }
     }
 
@@ -108,15 +121,22 @@ public class PlayerMovement : MonoBehaviour
         jump = false;
         animator.SetBool("IsJump", false);
     }
+    
+    void CheckGrounded() //use to check the ground for Jumping
+    {
+        grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
+
+
+    }
     void ApplyFriction() //Make friction  to improve movement
     {
         if (grounded && xInput ==0 && body.velocity.y <= 0) {
             body.velocity *= groundDecay;
         }
     }
-    void CheckGrounded() //use to check the ground for Jumping
+
+    void CoyoteJump()
     {
-        grounded = Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundMask).Length > 0;
         
     }
 
