@@ -567,6 +567,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5354928827852210296, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
   m_PrefabInstance: {fileID: 1514461309}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &750602123 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+  m_PrefabInstance: {fileID: 1514461309}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01dbda5db971dd46bdd08c16e8b318c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!50 &750602124 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8617278971038108817, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+  m_PrefabInstance: {fileID: 1514461309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1104693289 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5477205207102685105, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
@@ -5678,6 +5694,14 @@ PrefabInstance:
       value: -0.17354146
       objectReference: {fileID: 0}
     - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 750602124}
+    - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
       propertyPath: jumpSpeed
       value: 10
       objectReference: {fileID: 0}
@@ -5692,6 +5716,34 @@ PrefabInstance:
     - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
       propertyPath: fallMultiplier
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 750602123}
+    - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLanding
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228994234562077543, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
+      propertyPath: onLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4362702795331025863, guid: 9c620ff98e44e6d47bf51834f8f444b9, type: 3}
       propertyPath: m_LocalPosition.x
