@@ -71,9 +71,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 133832299
+  m_SortingLayer: 2
+  m_SortingOrder: 100
   m_Sprite: {fileID: 1476467519, guid: e2ca1008bc01a82408feedf43f84a294, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 399478144796374958}
   - component: {fileID: 5750874799828919190}
+  - component: {fileID: 9064141271161936266}
   m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
@@ -170,7 +171,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.02074825}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -181,8 +182,43 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17, y: 0.36}
+  m_Size: {x: 0.17, y: 0.3185035}
   m_EdgeRadius: 0.02
+--- !u!58 &9064141271161936266
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5477205207102685105}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0046530487, y: -0.13269857}
+  serializedVersion: 2
+  m_Radius: 0.060091365
 --- !u!1 &7746480621001862668
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 7746480621001862668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.074, z: 0}
+  m_LocalPosition: {x: 0.018, y: 0.074, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -247,7 +283,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.021093741, y: -0.16912812}
+  m_Offset: {x: -0.035927273, y: -0.17354146}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -258,7 +294,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.10924876, y: 0.025338188}
+  m_Size: {x: 0.13891584, y: 0.034164846}
   m_EdgeRadius: 0
 --- !u!1 &8928142474940468828
 GameObject:
@@ -313,7 +349,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 6200000, guid: 25b860092aa98b34995f4dfbdf952786, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -322,7 +358,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 1
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1228994234562077543
@@ -337,18 +373,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01dbda5db971dd46bdd08c16e8b318c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 8617278971038108817}
   groundCheck: {fileID: 834626583317126148}
   groundMask:
     serializedVersion: 2
     m_Bits: 128
   groundSpeed: 8
-  jumpSpeed: 7
-  acceleration: 0.29
-  groundDecay: 0.652
+  jumpSpeed: 10
+  acceleration: 0.45
+  groundDecay: 0.779
   grounded: 0
   animator: {fileID: 7310871368948660438}
-  OnLandEvent:
+  onLandEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1228994234562077543}
@@ -380,8 +415,9 @@ MonoBehaviour:
     m_Bits: 256
   animator: {fileID: 7310871368948660438}
   attackPoint: {fileID: 5663010135751163740}
-  attackRange: 0.08
-  attackDamage: 40
+  attackRange: 0.5
+  attackDamage: 25
+  attackRate: 2
 --- !u!1 &9053092556226926278
 GameObject:
   m_ObjectHideFlags: 0
