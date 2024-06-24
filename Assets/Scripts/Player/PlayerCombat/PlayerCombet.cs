@@ -20,21 +20,31 @@ public class PlayerCombet : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Attack();
+                PlayerAttack();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         }
         
     }
 
-    void Attack()
+    void PlayerAttack()
     {
         animator.SetTrigger("Attack");
 
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position,attackRange,enemylayers);
-        foreach (Collider2D enemy in hitEnemies)
+        // Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position,attackRange,enemylayers);
+        // foreach (Collider2D enemy in hitEnemies)
+        // {
+        //     enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+        // }
+        
+        Collider2D hitEnemies = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemylayers);
+         if (hitEnemies != null && hitEnemies.GetComponent<Boss_Health>() != null )
+         {
+             hitEnemies.GetComponent<Boss_Health>().TakeDamage(attackDamage);
+         }
+         if (hitEnemies != null && hitEnemies.GetComponent<Enemy>() != null)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            hitEnemies.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
     }
 

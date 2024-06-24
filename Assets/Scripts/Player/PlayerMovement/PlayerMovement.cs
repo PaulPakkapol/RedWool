@@ -202,11 +202,14 @@ public class PlayerMovement : MonoBehaviour
         if (CheckWall() && !grounded && _xInput !=0f)
         {
             isWallSliding = true;
+            animator.SetBool("WallSlide", true);
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            
         }
         else
         {
             isWallSliding = false;
+            animator.SetBool("WallSlide", false);
         }
     }
 
@@ -215,6 +218,7 @@ public class PlayerMovement : MonoBehaviour
         if (isWallSliding)
         {
             isWallJumping = false;
+            
             wallJumpDirection = -transform.localScale.x;
             wallJumpingCounter = wallJumpingTime;
             

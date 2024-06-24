@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,39 +10,47 @@ public class Boss_Attack : MonoBehaviour
     public int enragedAttackDamage = 40;
 
     public Vector3 attackOffset;
-    public float attackRange;
+    public float attackRange =2f;
     public LayerMask attackMask;
-    public Transform bossAttackPoint;
 
-    public void Attack()
+    public void Update()
     {
-       // Vector3 pos = transform.position;
-       // pos += transform.right * attackOffset.x;
-       //pos += transform.up * attackOffset.y;
-
-        Collider2D[] colInfo = Physics2D.OverlapCircleAll(bossAttackPoint.position, attackRange, attackMask);
-        foreach (Collider2D  player in colInfo)
-        {
-            player.GetComponent<PlayerHealth>().TakeDamage(attackDamage); 
-        }
         
+    }
+
+    public void BossAttack()
+    {
+       Vector3 pos = transform.position;
+       pos += transform.right * attackOffset.x;
+       pos += transform.up * attackOffset.y;
+
+        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
+        if (colInfo != null && colInfo.GetComponent<PlayerHealth>() != null)
+        {
+            colInfo.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
+        }
+
     }
     
-    private void OnDrawGizmosSelected()
+    public void BossEnragedAttack()
     {
-        if (bossAttackPoint == null)
+        Vector3 pos = transform.position;
+        pos += transform.right * attackOffset.x;
+        pos += transform.up * attackOffset.y;
+
+        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
+        if (colInfo != null && colInfo.GetComponent<PlayerHealth>() != null)
         {
-            return;
+            colInfo.GetComponent<PlayerHealth>().TakeDamage(enragedAttackDamage);
         }
-        Gizmos.DrawWireSphere(bossAttackPoint.position,attackRange);
-    }
-    void Start()
-    {
-        
+
     }
 
-    void Update()
+    private void OnDrawGizmosSelected()
     {
-        
+        Vector3 pos = transform.position;
+        pos += transform.right * attackOffset.x;
+        pos += transform.up * attackOffset.y;
+        Gizmos.DrawWireSphere(pos,attackRange);
     }
 }
